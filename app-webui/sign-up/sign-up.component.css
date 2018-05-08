@@ -1,0 +1,7 @@
+.card {
+  min-width: 220px;
+  max-width: 500px;
+  left : 40%;
+  position : absolute;
+  top : 30%;
+}

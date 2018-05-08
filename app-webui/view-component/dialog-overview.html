@@ -1,0 +1,56 @@
+<form class="example-form">
+  <div>
+    <mat-form-field>
+      <input matInput #name placeholder="Name" required>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <textarea matInput #desc placeholder="Describe" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" required></textarea>
+    </mat-form-field>
+  </div>
+  <div class="time_picker">
+    <mat-form-field>
+      <input matInput #date [matDatepicker]="picker1" placeholder="Date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="true" #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput #time [owlDateTimeTrigger]="dt" [owlDateTime]="dt" placeholder="Time" required>
+      <owl-date-time [pickerType]="'timer'" #dt></owl-date-time>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <textarea matInput #contacts placeholder="Contacts" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" required></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <div *ngIf="this.cookies.get('authority') == 'SUPER_USER'">
+      <mat-form-field>
+        <input matInput [(ngModel)]="user" placeholder="user" [matAutocomplete]="auto" [formControl]="userControl"  required/>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let user of users | async" [value]="user.email">
+            {{ user.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div>
+      <div>
+        <mat-form-field>
+          <mat-select #interval placeholder="Notification Interval" multiple>
+            <mat-option *ngFor="let interval of notificationIntervals " [value]="interval.value">
+              {{ interval.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-icon-button (click)="postData(name.value , desc.value , date.value , time.value , contacts.value ,  interval.value)">
+       <mat-icon class="example-icon">add</mat-icon>
+     </button>
+      </div>
+    </div>

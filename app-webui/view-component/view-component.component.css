@@ -1,0 +1,35 @@
+
+.from_picker{
+  position: absolute;
+  right: 300px;
+}
+
+.menu{
+  position: absolute;
+  right: 50px;
+}
+.to_picker{
+  position: absolute;
+  right: 30px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.mat-column-delete {
+  overflow: visible;
+}
+
+.datepicker {
+  position: absolute;
+  top : 50px;
+  right  : 100px;
+}

@@ -1,0 +1,16 @@
+server.port: 44444
+
+management:
+  security:
+    enabled: true
+
+
+security:
+  ignored: false
+
+
+
+spring:
+  resources:
+    chain:
+      enabled: true

@@ -1,0 +1,22 @@
+<H2>Your account</H2>
+<p>
+  Email : {{mail}}
+</p>
+<p>
+  Name : {{name}}
+</p>
+<p>
+  Authority : {{authority}}
+</p>
+<p>
+  Password : {{password}}
+</p>
+<button mat-button (click) = "wantChangePassword()">Change password</button>
+<div *ngIf="want_to_change == true">
+<mat-form-field>
+  <input matInput #password placeholder="New password" (keyup.enter)="changePassword(password.value)" required>
+</mat-form-field>
+  </div>
+<p>
+  Describe : {{describe}}
+</p>

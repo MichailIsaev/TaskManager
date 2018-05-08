@@ -1,0 +1,96 @@
+<mat-toolbar color="warn">
+  <mat-toolbar-row>
+    <span>TaskManager</span>
+
+    <div class="menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>account_circle</mat-icon>
+</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+            <mat-icon >exit_to_app</mat-icon>
+            <span>Log out</span>
+        </button>
+        <button mat-menu-item (click)="openAccountDialog()">
+            <mat-icon >info</mat-icon>
+            <span>Account</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <div>
+    <button mat-icon-button (click)="openDialog()">
+     <mat-icon class="example-icon">add</mat-icon>
+  </button>
+    <mat-form-field>
+      <input matInput #task_name placeholder="By name" (keyup.enter)="startSearch(task_name.value)">
+    </mat-form-field>
+    <mat-form-field class="from_picker">
+      <input matInput [matDatepicker]="from_picker" [value]="startFromDate.value" (dateChange)="onFromDateChange($event)" placeholder="From date">
+      <mat-datepicker-toggle matSuffix [for]="from_picker"></mat-datepicker-toggle>
+      <mat-datepicker #from_picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="to_picker">
+      <input matInput  [matDatepicker]="to_picker" [value]="startToDate.value" (dateChange)="onToDateChange($event)" placeholder="To date">
+      <mat-datepicker-toggle matSuffix [for]="to_picker"></mat-datepicker-toggle>
+      <mat-datepicker #to_picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="describe">
+        <mat-header-cell *matHeaderCellDef> Describe </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.describe}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="targetTime">
+        <mat-header-cell *matHeaderCellDef> Target time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.targetTime}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="contacts">
+        <mat-header-cell *matHeaderCellDef> Contacts </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.contacts}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="warn" (click)="deleteAll()">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button color="warn" (click)="deleteRow(row)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <app-paginator [page]="page" [pages]="pages"></app-paginator>
+  </div>
+</mat-card>

@@ -1,0 +1,32 @@
+<mat-card class="card">
+  <H1>
+    Sign up
+  </H1>
+  <div>
+    <mat-form-field class = "username">
+      <input matInput #email placeholder="Enter email" required>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class = "username">
+      <input matInput #name placeholder="Enter name" required>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class = "password">
+      <input matInput #password placeholder="Enter password" required>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class = "username">
+      <textarea matInput #description placeholder="Write something"></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button (click) = "signUp(name.value , email.value , password.value , description.value)">
+        Sign up
+    </button>
+  </div>
+
+</mat-card>
